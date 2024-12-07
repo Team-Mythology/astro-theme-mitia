@@ -1,6 +1,6 @@
 import type { InfoConf } from './configs/info'
 import type { DefaultConf } from './configs/default'
-import { type NavbarConf, NavLink } from './configs/navbar'
+import { type NavbarConf, type NavLinkPreset, NavLink, } from './configs/navbar'
 import type { ProfileConf } from './configs/profile'
 import type { CommentConf } from './configs/comment'
 import type { FooterConf } from './configs/footer'
@@ -31,7 +31,7 @@ export const themeConfig: ThemeConfig = {
         // Site subTitle
         subTitle: 'Astro Blog',
         // Site url
-        url: undefined,
+        url: 'https://github.com/Team-Mythology/astro-theme-mitia',
     },
     // Default Configuration
     // Docs: 
@@ -43,12 +43,12 @@ export const themeConfig: ThemeConfig = {
             secondary: undefined,
         },
         mode: 'light',
-        maxWidth: 1200,
+        maxWidth: 800,
     },
     // Navbar Configuration
     // Docs: 
     navbar: {
-        logo: undefined,
+        logo: '/assets/logo.jpg',
         title: "Develop Blog",
         links: [
             NavLink.Home,
