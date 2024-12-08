@@ -1,1 +1,5 @@
-export type PluginConf = {}
+export type PluginConf = {
+    googleAnalytics: {
+        id?: string;
+    }
+}

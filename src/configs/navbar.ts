@@ -1,13 +1,16 @@
 export type NavbarConf = {
     logo?: string;
     title: string;
-    links: ({
-        type: string,
-        name?: string,
-        icon?: string,
-        url: string,
-    } | NavLink)[],
+    links: (NavLink | NavLinkPreset)[],
     search: boolean
+}
+
+
+export type NavLinkPreset = {
+    type: string;
+    name?: string;
+    icon?: string;
+    url: string;
 }
 
 

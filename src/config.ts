@@ -37,10 +37,10 @@ export const themeConfig: ThemeConfig = {
     // Docs: 
     default: {
         favicon: undefined,
-        banner: '',
+        banner: '/assets/wallpaper-light.webp',
         color: {
-            primary: "#112233",
-            secondary: undefined,
+            primary: "#BFC8EB",
+            secondary: "#7189EB",
         },
         mode: 'light',
         maxWidth: 800,
@@ -54,8 +54,8 @@ export const themeConfig: ThemeConfig = {
             NavLink.Home,
             NavLink.Archive,
             {
-                type: 'icon',
-                name: undefined,
+                type: 'name',
+                name: 'MythologyTeams',
                 icon: undefined,
                 url: 'https://mythologyteams.com'
             }
@@ -112,5 +112,9 @@ export const themeConfig: ThemeConfig = {
     },
     // Plugin Configuration
     // Docs:
-    plugin: {},
+    plugin: {
+        googleAnalytics: {
+            id: undefined
+        }
+    },
 }
