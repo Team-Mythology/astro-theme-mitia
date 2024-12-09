@@ -1,0 +1,293 @@
+---
+import { themeConfig } from '@/config'
+import { NavLink, type NavLinkPreset } from '@/configs/navbar'
+import ImageWidget from '@/components/widget/image_widget.astro'
+
+let links: NavLinkPreset[] = themeConfig.navbar.links.map(
+    (item: NavLinkPreset | NavLink): NavLinkPreset => {
+        if (typeof item === 'number') {
+            let itemName;
+            let itemUrl;
+
+            switch(item) {
+                case 0:
+                    itemName = "홈";
+                    itemUrl = "/";
+                    break;
+                case 1:
+                    itemName = "아카이브";
+                    itemUrl = '/archive';
+                    break;
+                default:
+                    itemUrl = '/error';
+                    break;
+            }
+
+            return {
+                name: itemName,
+                type: 'icon',
+                url: itemUrl
+            }
+        }
+
+        return item
+    },
+)
+
+const navbarstyle = {
+    '--navbar-width': `${themeConfig.default.maxWidth}px`,
+    '--navbar-background': themeConfig.default.color.primary,
+    '--navlink-primary': themeConfig.default.color.primary,
+    '--navlink-secondary': themeConfig.default.color.secondary || '#ffffff'
+}
+
+const navLinkStyle = {
+    '--navlink-primary': themeConfig.default.color.primary,
+    '--navlink-secondary': themeConfig.default.color.secondary || '#ffffff'
+}
+---
+<div class="navbar-container">
+    <div class="navbar" style={navbarstyle}>
+        <div class="nav-left">
+            {themeConfig.navbar.logo && (
+                <div class="logo-container">
+                    <ImageWidget src={themeConfig.navbar.logo} alt="Logo" />
+                </div>
+            )}
+            <div class="nav-title">{themeConfig.navbar.title}</div>
+        </div>
+        <div class="nav-right">
+            {links.map((link) => (
+                <a href={link.url} class="nav-category-button" style={navLinkStyle}>
+                    {link.name}
+                </a>
+            ))}
+
+            <i class="search-button">
+                <i class="fa-solid fa-magnifying-glass default-icon"></i>
+                <i class="fa-solid fa-magnifying-glass fa-beat hover-icon" style=`color: ${themeConfig.default.color.secondary}`></i>
+            </i>
+        </div>
+        <div class="nav-right-alt">
+            <button id="nav-menu-button" >
+                <i class="fa-solid fa-bars" />
+            </button>
+        </div>
+    </div>
+
+        <div class="menu-overlay" style="display: none;">
+            <div class="menu-sidebar">
+                <ul>
+                    {links.map((link) => (
+                        <li style={`color: ${themeConfig.default.color.secondary}`}>
+                            <a href={link.url} style={`color: inherit;`}>{link.name}</a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </div>
+</div>
+
+<script>
+    const MENU_PANNEL_STATE_KEY = 'menuPannel';
+
+
+    let isMenuOpen = localStorage.getItem(MENU_PANNEL_STATE_KEY) === 'true';
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const navMenuButton = document.getElementById("nav-menu-button");
+
+        const updateMenuOverlay = () => {
+            const menuOverlay = document.querySelector(".menu-overlay") as HTMLElement;
+
+            if (window.innerWidth > 550) {
+                isMenuOpen = false;
+                localStorage.setItem(MENU_PANNEL_STATE_KEY, String(isMenuOpen));
+                if (menuOverlay) {
+                    menuOverlay.style.display = "none";
+                    menuOverlay.classList.remove("active");
+                }
+            }
+        };
+
+        if (navMenuButton) {
+            navMenuButton.addEventListener("click", () => {
+                isMenuOpen = !isMenuOpen;
+                localStorage.setItem(MENU_PANNEL_STATE_KEY, String(isMenuOpen)); // 상태를 로컬 스토리지에 저장
+
+                const menuOverlay = document.querySelector(".menu-overlay") as HTMLElement;
+                if (menuOverlay) {
+                    menuOverlay.style.display = isMenuOpen ? "flex" : "none";
+                }
+            });
+        }
+
+        window.addEventListener("resize", updateMenuOverlay);
+    });
+</script>
+
+<style>
+.navbar-container {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 30px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    width: var(--navbar-width);
+    background-color: #ffffff;
+    color: #000;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.logo-container {
+    max-width: 30px;
+    max-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.nav-category-button {
+    padding: 5px 15px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+
+.nav-category-button:hover {
+    border-radius: 5px;
+    background-color: var(--navlink-secondary);
+    color: var(--navlink-primary);
+    cursor: pointer;
+}
+
+
+.search-button .default-icon {
+    display: block;
+}
+
+
+.search-button .hover-icon {
+    display: none;
+}
+
+
+.search-button:hover .default-icon {
+    display: none;
+}
+
+
+.search-button:hover .hover-icon {
+    display: block;
+}
+
+
+.nav-right-alt {
+    display: none;
+}
+
+
+.menu-overlay {
+    position: absolute;
+    top: 120%;
+    max-width: 165px;
+    right: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    display: none;
+    border-radius: 12px;
+    padding: 15px 15px;
+    animation: slideDown 0.3s ease-out;
+}
+
+.menu-overlay.active {
+    display: block;
+}
+
+.menu-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.menu-sidebar a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #000 !important;
+    text-decoration: none;
+    padding: 8px 5px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+.menu-sidebar a:hover {
+    color: var(--navlink-secondary, #333);
+    font-weight: 700;
+}
+
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+@media (max-width: 550px) {
+    .navbar {
+        padding: 17.5px 30px;
+    }
+
+    .nav-right {
+        display: none;
+    }
+
+    .nav-right-alt {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+}
+</style>
