@@ -1,0 +1,24 @@
+---
+import Navbar from '@/components/common/navbar.astro';
+import Banner from '@/components/common/banner.astro';
+---
+<div class="base-body">
+    <div class="base-body-banner">
+        <Banner />
+    </div>
+    <div class="base-body-content">
+        <Navbar />
+    </div>
+</div>
+
+<style>
+    .base-body {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .base-body-banner {
+        position: fixed;
+        top: 0;
+    }
+</style>

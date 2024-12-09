@@ -1,11 +1,20 @@
+---
+import { themeConfig } from '@/config' 
+import Banner from '@/components/common/banner.astro'
+
+const lang = themeConfig.lang
+
+const title = `${themeConfig.info.title} - ${themeConfig.info.subTitle}`;
+---
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{ title }</title>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" />
 	</head>
 	<body>
 		<slot />

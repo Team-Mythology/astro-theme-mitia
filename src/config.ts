@@ -48,7 +48,7 @@ export const themeConfig: ThemeConfig = {
     // Navbar Configuration
     // Docs: 
     navbar: {
-        logo: '/assets/logo.jpg',
+        logo: '/assets/logo.svg',
         title: "Develop Blog",
         links: [
             NavLink.Home,
