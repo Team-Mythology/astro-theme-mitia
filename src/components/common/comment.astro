@@ -1,0 +1,46 @@
+---
+import { themeConfig } from "@/config"
+
+const commentConfig = themeConfig.comment
+---
+<div class="comment-container">
+    ({commentConfig.type === "giscus"} && {
+        <section class="comment-giscus">
+            <script src="https://giscus.app/client.js"
+                data-repo={commentConfig.giscus.repo}
+                data-repo-id={commentConfig.giscus.repoId}
+                data-category={commentConfig.giscus.category}
+                data-category-id={commentConfig.giscus.categoryId}
+                data-mapping={commentConfig.giscus.mapping}
+                data-strict={commentConfig.giscus.strict}
+                data-reactions-enabled={commentConfig.giscus.reactionsEnabled}
+                data-emit-metadata={commentConfig.giscus.emitMetaData}
+                data-input-position={commentConfig.giscus.inputPosition}
+                data-theme={commentConfig.giscus.theme}
+                data-lang={commentConfig.giscus.lang}
+                crossorigin={commentConfig.giscus.crossorigin}
+                async>
+            </script>
+      </section>
+    })
+</div>
+
+<script is:inline>
+    function updateGiscusTheme() {
+        const theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+        const iframe = document.querySelector('iframe.giscus-frame')
+        if (!iframe) return
+        iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, 'https://giscus.app')
+    }
+  
+    const observer = new MutationObserver(updateGiscusTheme)
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
+  
+    window.onload = () => {
+        updateGiscusTheme()
+    }
+</script>
+
+<style>
+
+</style>
