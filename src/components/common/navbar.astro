@@ -127,167 +127,167 @@ const navLinkStyle = {
 </script>
 
 <style>
-.navbar-container {
-    position: fixed;
-    top: 0;
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 30px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: var(--navbar-width);
-    background-color: #ffffff;
-    color: #000;
-}
-
-.nav-left {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-
-.nav-right {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.logo-container {
-    max-width: 30px;
-    max-height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.nav-title {
-    text-align: center;
-    font-weight: bold;
-}
-
-
-.nav-category-button {
-    padding: 5px 15px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-
-.nav-category-button:hover {
-    border-radius: 5px;
-    background-color: var(--navlink-secondary);
-    color: var(--navlink-primary);
-    cursor: pointer;
-}
-
-
-.search-button .default-icon {
-    display: block;
-}
-
-
-.search-button .hover-icon {
-    display: none;
-}
-
-
-.search-button:hover .default-icon {
-    display: none;
-}
-
-
-.search-button:hover .hover-icon {
-    display: block;
-}
-
-
-.nav-right-alt {
-    display: none;
-}
-
-
-.menu-overlay {
-    position: absolute;
-    top: 120%;
-    max-width: 165px;
-    right: 10px;
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 9999;
-    display: none;
-    border-radius: 12px;
-    padding: 15px 15px;
-    animation: slideDown 0.3s ease-out;
-}
-
-.menu-overlay.active {
-    display: block;
-}
-
-.menu-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    text-align: left;
-}
-
-.menu-sidebar a {
-    font-size: 1rem;
-    font-weight: 500;
-    color: #000 !important;
-    text-decoration: none;
-    padding: 8px 5px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-
-.menu-sidebar a:hover {
-    color: var(--navlink-secondary, #333);
-    font-weight: 700;
-}
-
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
+    .navbar-container {
+        position: fixed;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-
-
-@media (max-width: 550px) {
+    
     .navbar {
-        padding: 17.5px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px 30px;
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        width: var(--navbar-width);
+        background-color: #ffffff;
+        color: #000;
     }
-
-    .nav-right {
-        display: none;
-    }
-
-    .nav-right-alt {
+    
+    .nav-left {
         display: flex;
         align-items: center;
         justify-content: space-between;
         gap: 10px;
     }
-}
+    
+    
+    .nav-right {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+    
+    .logo-container {
+        max-width: 30px;
+        max-height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .nav-title {
+        text-align: center;
+        font-weight: bold;
+    }
+    
+    
+    .nav-category-button {
+        padding: 5px 15px;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+    }
+    
+    
+    .nav-category-button:hover {
+        border-radius: 5px;
+        background-color: var(--navlink-secondary);
+        color: var(--navlink-primary);
+        cursor: pointer;
+    }
+    
+    
+    .search-button .default-icon {
+        display: block;
+    }
+    
+    
+    .search-button .hover-icon {
+        display: none;
+    }
+    
+    
+    .search-button:hover .default-icon {
+        display: none;
+    }
+    
+    
+    .search-button:hover .hover-icon {
+        display: block;
+    }
+    
+    
+    .nav-right-alt {
+        display: none;
+    }
+    
+    
+    .menu-overlay {
+        position: absolute;
+        top: 120%;
+        max-width: 165px;
+        right: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+        display: none;
+        border-radius: 12px;
+        padding: 15px 15px;
+        animation: slideDown 0.3s ease-out;
+    }
+    
+    .menu-overlay.active {
+        display: block;
+    }
+    
+    .menu-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        text-align: left;
+    }
+    
+    .menu-sidebar a {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #000 !important;
+        text-decoration: none;
+        padding: 8px 5px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    
+    .menu-sidebar a:hover {
+        color: var(--navlink-secondary, #333);
+        font-weight: 700;
+    }
+    
+    
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    
+    
+    @media (max-width: 550px) {
+        .navbar {
+            padding: 17.5px 30px;
+        }
+    
+        .nav-right {
+            display: none;
+        }
+    
+        .nav-right-alt {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+    }
 </style>
